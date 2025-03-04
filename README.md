@@ -2,23 +2,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trevor Coburn | Unleash the Vibe</title>
+    <title>TREY | Trevor Coburn</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --neon-blue: #00ddeb;
-            --neon-red: #ff0066;
-            --neon-green: #39ff14;
-            --dark-bg: #0d0d1a;
-            --light-text: #e0e0e0;
-            --shadow: 0 0 15px rgba(0, 221, 235, 0.5);
+            --primary-blue: #00c4ff;
+            --accent-red: #ff1e56;
+            --dark-bg: #0a0f1c;
+            --light-text: #f0f0f0;
+            --shadow-glow: 0 0 20px rgba(0, 196, 255, 0.4);
+            --transition: all 0.3s ease;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Orbitron', sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
 
         body {
@@ -26,107 +27,91 @@
             color: var(--light-text);
             line-height: 1.6;
             overflow-x: hidden;
-            background-image: linear-gradient(45deg, rgba(0, 221, 235, 0.1), rgba(255, 0, 102, 0.1));
+            position: relative;
         }
 
-        /* Floating Particles */
-        .particle {
+        /* Subtle Background Gradient */
+        body::before {
+            content: '';
             position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 196, 255, 0.05), rgba(255, 30, 86, 0.05));
             z-index: -1;
-            width: 10px;
-            height: 10px;
-            background: var(--neon-blue);
-            border-radius: 50%;
-            animation: drift 20s infinite linear;
-            opacity: 0.5;
-        }
-
-        @keyframes drift {
-            0% { transform: translate(0, 0); }
-            50% { transform: translate(50vw, 50vh); opacity: 0.8; }
-            100% { transform: translate(100vw, 100vh); opacity: 0; }
         }
 
         header {
-            background: linear-gradient(135deg, var(--neon-blue), var(--neon-red));
-            text-align: center;
-            padding: 4rem 1rem;
             position: relative;
-            box-shadow: var(--shadow);
+            text-align: center;
+            padding: 3rem 1rem;
+            background: linear-gradient(135deg, rgba(0, 196, 255, 0.2), rgba(255, 30, 86, 0.2));
         }
 
-        .glitch-text {
-            font-size: 4rem;
-            font-weight: 900;
-            text-transform: uppercase;
+        .logo-text {
+            font-size: 3.5rem;
+            font-weight: 700;
+            letter-spacing: 2px;
             color: var(--light-text);
-            text-shadow: 0 0 10px var(--neon-blue), 0 0 20px var(--neon-red);
-            animation: glitch 2s infinite;
+            text-transform: uppercase;
+            text-shadow: var(--shadow-glow);
+            transition: var(--transition);
         }
 
-        @keyframes glitch {
-            0%, 100% { transform: translate(0); }
-            20% { transform: translate(-5px, 5px) skew(10deg); }
-            40% { transform: translate(5px, -5px) skew(-10deg); }
+        .logo-text:hover {
+            color: var(--primary-blue);
         }
 
         .tagline {
-            font-size: 1.5rem;
-            color: var(--neon-green);
-            animation: pulse 1.5s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
+            font-size: 1.2rem;
+            font-weight: 300;
+            color: var(--primary-blue);
+            margin-top: 0.5rem;
         }
 
         nav {
-            background: rgba(13, 13, 26, 0.9);
+            background: rgba(10, 15, 28, 0.9);
             position: sticky;
             top: 0;
             z-index: 1000;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(8px);
+            padding: 1rem 0;
         }
 
         nav ul {
             display: flex;
             justify-content: center;
-            padding: 1rem;
-        }
-
-        nav li {
-            margin: 0 1rem;
+            gap: 2rem;
         }
 
         nav a {
-            color: var(--neon-blue);
+            color: var(--light-text);
             text-decoration: none;
-            font-size: 1.2rem;
-            padding: 0.5rem 1rem;
-            transition: all 0.3s;
+            font-size: 1.1rem;
+            font-weight: 500;
+            text-transform: uppercase;
             position: relative;
-        }
-
-        nav a:hover {
-            color: var(--neon-red);
-            text-shadow: var(--shadow);
-            transform: translateY(-3px);
+            transition: var(--transition);
         }
 
         nav a::after {
             content: '';
             position: absolute;
-            bottom: 0;
+            bottom: -5px;
             left: 0;
             width: 0;
             height: 2px;
-            background: var(--neon-green);
-            transition: width 0.3s;
+            background: var(--primary-blue);
+            transition: width 0.3s ease;
         }
 
         nav a:hover::after {
             width: 100%;
+        }
+
+        nav a:hover {
+            color: var(--primary-blue);
         }
 
         .section {
@@ -137,215 +122,163 @@
         }
 
         h2 {
-            font-size: 2.5rem;
-            color: var(--neon-blue);
-            text-shadow: var(--shadow);
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--primary-blue);
             margin-bottom: 2rem;
-            animation: fadeIn 1s ease-in;
+            text-transform: uppercase;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .music-links {
+        .music-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 1.5rem;
         }
 
-        .music-btn {
-            background: linear-gradient(45deg, var(--neon-blue), var(--neon-red));
+        .music-link {
+            background: rgba(255, 255, 255, 0.05);
             padding: 1.5rem;
-            border-radius: 10px;
+            border-radius: 8px;
             color: var(--light-text);
             text-decoration: none;
-            font-size: 1.2rem;
-            font-weight: bold;
-            box-shadow: var(--shadow);
-            transition: all 0.4s;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: var(--transition);
             position: relative;
             overflow: hidden;
         }
 
-        .music-btn:hover {
-            transform: scale(1.05) rotate(2deg);
-            box-shadow: 0 0 25px var(--neon-green);
-            background: linear-gradient(45deg, var(--neon-red), var(--neon-green));
-        }
-
-        .music-btn::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: rgba(255, 255, 255, 0.2);
-            transform: rotate(30deg);
-            transition: all 0.5s;
-        }
-
-        .music-btn:hover::before {
-            transform: rotate(30deg) translate(50%, 50%);
+        .music-link:hover {
+            background: var(--primary-blue);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-glow);
         }
 
         #upcoming {
-            background: linear-gradient(90deg, var(--neon-blue), var(--neon-red), var(--neon-green));
+            background: linear-gradient(90deg, var(--primary-blue), var(--accent-red));
             padding: 2rem;
-            border-radius: 15px;
+            border-radius: 10px;
+            max-width: 600px;
             margin: 2rem auto;
-            max-width: 700px;
-            box-shadow: var(--shadow);
-            animation: glow 2s infinite alternate;
+            box-shadow: var(--shadow-glow);
+            animation: pulseGlow 2s infinite alternate;
         }
 
-        @keyframes glow {
-            0% { box-shadow: 0 0 10px var(--neon-blue); }
-            100% { box-shadow: 0 0 30px var(--neon-red); }
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 10px var(--primary-blue); }
+            100% { box-shadow: 0 0 25px var(--accent-red); }
         }
 
-        .email-btn {
+        #upcoming h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--light-text);
+        }
+
+        #upcoming p {
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+
+        .connect-btn {
             display: inline-block;
             margin: 2rem 0;
-            background: var(--neon-green);
+            background: var(--primary-blue);
             color: var(--dark-bg);
-            padding: 1.5rem 3rem;
-            border-radius: 50px;
+            padding: 1rem 2.5rem;
+            border-radius: 30px;
             text-decoration: none;
-            font-size: 1.3rem;
-            font-weight: bold;
-            box-shadow: var(--shadow);
-            transition: all 0.3s;
+            font-weight: 500;
+            font-size: 1.2rem;
+            transition: var(--transition);
         }
 
-        .email-btn:hover {
-            background: var(--neon-red);
+        .connect-btn:hover {
+            background: var(--accent-red);
             color: var(--light-text);
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
 
         .social-links {
             display: flex;
             justify-content: center;
-            gap: 2rem;
-            margin-top: 2rem;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
         }
 
         .social-btn {
-            width: 60px;
-            height: 60px;
-            background: var(--neon-blue);
-            color: var(--dark-bg);
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--light-text);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
-            transition: all 0.3s;
-            box-shadow: var(--shadow);
+            font-size: 1.3rem;
+            transition: var(--transition);
         }
 
         .social-btn:hover {
-            background: var(--neon-green);
-            transform: rotate(360deg);
+            background: var(--primary-blue);
+            transform: scale(1.1);
         }
 
         footer {
-            background: rgba(13, 13, 26, 0.9);
-            padding: 2rem;
+            background: rgba(10, 15, 28, 0.9);
+            padding: 1.5rem;
             text-align: center;
-            color: var(--neon-blue);
             font-size: 0.9rem;
-        }
-
-        .marquee {
-            background: var(--neon-red);
-            color: var(--dark-bg);
-            padding: 0.5rem 0;
-            overflow: hidden;
-            white-space: nowrap;
-        }
-
-        .marquee-content {
-            display: inline-block;
-            animation: marquee 15s linear infinite;
-        }
-
-        @keyframes marquee {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
+            color: var(--primary-blue);
         }
 
         @media (max-width: 768px) {
-            .glitch-text { font-size: 2.5rem; }
-            nav ul { flex-direction: column; }
-            nav li { margin: 0.5rem 0; }
-            .music-links { grid-template-columns: 1fr; }
+            .logo-text { font-size: 2.5rem; }
+            nav ul { flex-direction: column; gap: 1rem; }
+            .music-grid { grid-template-columns: 1fr; }
         }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Particles -->
-    <div class="particle" style="top: 10%; left: 20%;"></div>
-    <div class="particle" style="top: 30%; left: 70%;"></div>
-    <div class="particle" style="top: 60%; left: 40%;"></div>
-    <div class="particle" style="top: 80%; left: 90%;"></div>
-
     <header>
-        <h1 class="glitch-text">TREVOR COBURN</h1>
-        <p class="tagline">Drop Beats, Not Bombs</p>
+        <h1 class="logo-text">TREY</h1>
+        <p class="tagline">Trevor Coburn • Sound of the Future</p>
     </header>
-
-    <div class="marquee">
-        <div class="marquee-content">
-            🔥 NEW SINGLE "LINK IN BIO" DROPS MARCH 2025! • STREAM NOW ON SPOTIFY • VIBE WITH TREVOR 🔥
-        </div>
-    </div>
 
     <nav>
         <ul>
-            <li><a href="#about">About</a></li>
             <li><a href="#music">Music</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#contact">Connect</a></li>
         </ul>
     </nav>
 
     <div id="upcoming">
         <h3>NEW SINGLE "LINK IN BIO"</h3>
-        <p>March 2025 – Prepare for the Hype!</p>
+        <p>March 2025 – Get Ready to Vibe</p>
     </div>
 
-    <section id="about" class="section">
-        <h2>Who’s Trevor?</h2>
-        <p>Bristol’s sonic rebel. Husband. Dream-weaver. His beats? A portal to another dimension.</p>
-    </section>
-
     <section id="music" class="section">
-        <h2>The Soundwave</h2>
-        <p>Plug in and blast off:</p>
-        <div class="music-links">
-            <a href="https://open.spotify.com/artist/63gY4LCMTTRiKwPbzPqJwE" class="music-btn" target="_blank">Spotify Artist</a>
-            <a href="https://open.spotify.com/album/18oP3HVNXvO8aHh26ttPnh?si=OjkV_XJ7QTS-BUDIbXFOCw" class="music-btn" target="_blank">"Live More" Spotify</a>
-            <a href="https://music.amazon.com/albums/B0DT4VH4KN" class="music-btn" target="_blank">Amazon Music</a>
-            <a href="https://youtu.be/kMeiOctw5Q8?si=u9O5DcTmTbi8J4sf" class="music-btn" target="_blank">"I Ain’t Sorry" YouTube</a>
-            <a href="https://youtu.be/IuC3oQwssic?si=IqHvIbNzsIL-_pDe" class="music-btn" target="_blank">"Summertime" YouTube</a>
-            <a href="https://youtu.be/ZWM0e7dLQq0?si=DoSN0BAIHA05jweI" class="music-btn" target="_blank">"See The Fame" YouTube</a>
+        <h2>Music</h2>
+        <div class="music-grid">
+            <a href="https://open.spotify.com/artist/63gY4LCMTTRiKwPbzPqJwE" class="music-link" target="_blank">Spotify Artist</a>
+            <a href="https://open.spotify.com/album/18oP3HVNXvO8aHh26ttPnh?si=OjkV_XJ7QTS-BUDIbXFOCw" class="music-link" target="_blank">"Live More" Spotify</a>
+            <a href="https://music.amazon.com/albums/B0DT4VH4KN" class="music-link" target="_blank">Amazon Music</a>
+            <a href="https://youtu.be/kMeiOctw5Q8?si=u9O5DcTmTbi8J4sf" class="music-link" target="_blank">"I Ain’t Sorry" YouTube</a>
+            <a href="https://youtu.be/IuC3oQwssic?si=IqHvIbNzsIL-_pDe" class="music-link" target="_blank">"Summertime" YouTube</a>
+            <a href="https://youtu.be/ZWM0e7dLQq0?si=DoSN0BAIHA05jweI" class="music-link" target="_blank">"See The Fame" YouTube</a>
         </div>
     </section>
 
     <section id="contact" class="section">
         <h2>Connect</h2>
-        <a href="mailto:trevor.coburn@yahoo.com" class="email-btn">Hit Trevor Up ➤</a>
+        <a href="mailto:trevor.coburn@yahoo.com" class="connect-btn">Drop a Line</a>
         <div class="social-links">
             <a href="https://www.instagram.com/trevorcoburn/?igsh=aGYydWxieWtteGJ5" class="social-btn" target="_blank"><i class="fab fa-instagram"></i></a>
         </div>
     </section>
 
     <footer>
-        <p>© 2025 Trevor Coburn | Powered by the Beat</p>
+        <p>© 2025 TREY | Trevor Coburn</p>
     </footer>
 
     <script>
@@ -355,16 +288,6 @@
                 e.preventDefault();
                 document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
             });
-        });
-
-        // Interactive Particles
-        document.addEventListener('mousemove', (e) => {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            particle.style.left = `${e.pageX}px`;
-            particle.style.top = `${e.pageY}px`;
-            document.body.appendChild(particle);
-            setTimeout(() => particle.remove(), 2000);
         });
     </script>
 </body>
