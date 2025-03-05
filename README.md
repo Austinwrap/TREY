@@ -28,7 +28,7 @@
             background: var(--dark-bg);
             color: var(--light-text);
             line-height: 1.6;
-            overflow-x: hidden; /* Changed from overflow: hidden to allow vertical scrolling */
+            overflow-x: hidden;
             position: relative;
             perspective: 1000px;
         }
@@ -42,7 +42,6 @@
             z-index: -2;
         }
 
-        /* Holographic Overlay */
         body::before {
             content: '';
             position: fixed;
@@ -112,7 +111,7 @@
             top: 0;
             z-index: 1000;
             backdrop-filter: blur(20px);
-            padding: 2.5rem 0;
+            padding: 1.5rem 0; /* Reduced padding for mobile */
             box-shadow: var(--neon-glow);
             transform: translateZ(30px);
         }
@@ -120,28 +119,28 @@
         nav ul {
             display: flex;
             justify-content: center;
-            gap: 5rem;
+            gap: 3rem; /* Reduced gap for mobile */
         }
 
         nav a {
             color: var(--light-text);
             text-decoration: none;
-            font-size: 2rem;
+            font-size: 1.5rem; /* Slightly smaller for mobile */
             font-weight: 700;
             text-transform: uppercase;
             position: relative;
             transition: var(--transition);
             transform-style: preserve-3d;
-            z-index: 1001; /* Ensure nav links are clickable */
+            z-index: 1001;
         }
 
         nav a::after {
             content: '';
             position: absolute;
-            bottom: -12px;
+            bottom: -8px;
             left: 0;
             width: 0;
-            height: 5px;
+            height: 3px;
             background: linear-gradient(90deg, var(--primary-blue), var(--accent-red));
             transition: width 0.5s ease;
         }
@@ -157,7 +156,7 @@
         }
 
         .section {
-            padding: 10rem 2rem;
+            padding: 6rem 1rem; /* Reduced padding for mobile */
             max-width: 1800px;
             margin: 0 auto;
             text-align: center;
@@ -168,10 +167,10 @@
 
         h2 {
             font-family: 'Orbitron', sans-serif;
-            font-size: 5rem;
+            font-size: 4rem; /* Slightly smaller for mobile */
             font-weight: 700;
             color: var(--primary-blue);
-            margin-bottom: 5rem;
+            margin-bottom: 3rem;
             text-transform: uppercase;
             text-shadow: var(--neon-glow);
             animation: holoText 2s infinite alternate;
@@ -185,26 +184,26 @@
 
         .music-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 4rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Adjusted min width */
+            gap: 2rem; /* Reduced gap for mobile */
             transform: translateZ(20px);
         }
 
         .music-link {
             background: rgba(255, 255, 255, 0.05);
-            padding: 3rem;
-            border-radius: 20px;
+            padding: 2rem; /* Reduced padding */
+            border-radius: 15px;
             color: var(--light-text);
             text-decoration: none;
             font-weight: 700;
-            font-size: 1.8rem;
+            font-size: 1.4rem; /* Smaller text */
             transition: var(--transition);
             position: relative;
             overflow: hidden;
-            border: 3px solid var(--accent-red);
+            border: 2px solid var(--accent-red); /* Thinner border */
             box-shadow: var(--neon-glow);
             transform-style: preserve-3d;
-            z-index: 10; /* Ensure links are clickable */
+            z-index: 10;
         }
 
         .music-link::before {
@@ -225,17 +224,17 @@
 
         .music-link:hover {
             background: var(--accent-red);
-            transform: translateZ(50px) scale(1.15) rotateY(15deg);
-            box-shadow: 0 0 120px rgba(255, 46, 99, 1);
+            transform: translateZ(50px) scale(1.1) rotateY(15deg); /* Slightly less scale */
+            box-shadow: 0 0 80px rgba(255, 46, 99, 1); /* Reduced shadow size */
             color: var(--dark-bg);
         }
 
         #upcoming {
             background: linear-gradient(135deg, var(--primary-blue), var(--accent-red));
-            padding: 5rem;
-            border-radius: 25px;
-            max-width: 1200px;
-            margin: 5rem auto;
+            padding: 3rem; /* Reduced padding */
+            border-radius: 20px;
+            max-width: 90%; /* More flexible width */
+            margin: 3rem auto; /* Reduced margin */
             box-shadow: var(--neon-glow);
             animation: blackHole 3s infinite alternate;
             position: relative;
@@ -247,9 +246,9 @@
         #upcoming::after {
             content: '⚡️';
             position: absolute;
-            top: 30px;
-            right: 30px;
-            font-size: 4rem;
+            top: 20px;
+            right: 20px;
+            font-size: 2.5rem; /* Smaller emoji */
             animation: zap 1s infinite alternate;
         }
 
@@ -259,13 +258,13 @@
         }
 
         @keyframes blackHole {
-            0% { box-shadow: 0 0 30px var(--primary-blue); transform: translateZ(30px) scale(1); }
-            100% { box-shadow: 0 0 150px var(--accent-red); transform: translateZ(50px) scale(1.1); }
+            0% { box-shadow: 0 0 20px var(--primary-blue); transform: translateZ(30px) scale(1); }
+            100% { box-shadow: 0 0 100px var(--accent-red); transform: translateZ(50px) scale(1.05); }
         }
 
         #upcoming h3 {
             font-family: 'Orbitron', sans-serif;
-            font-size: 3rem;
+            font-size: 2rem; /* Smaller text */
             font-weight: 700;
             color: var(--light-text);
             text-shadow: var(--neon-glow);
@@ -273,7 +272,7 @@
         }
 
         #upcoming p {
-            font-size: 2rem;
+            font-size: 1.5rem; /* Smaller text */
             font-weight: 300;
             color: var(--dark-bg);
             transform: translateZ(10px);
@@ -281,20 +280,20 @@
 
         .connect-btn {
             display: inline-block;
-            margin: 4rem 0;
+            margin: 2rem 0; /* Reduced margin */
             background: linear-gradient(90deg, var(--primary-blue), var(--accent-red));
             color: var(--light-text);
-            padding: 2.5rem 5rem;
-            border-radius: 80px;
+            padding: 1.5rem 3rem; /* Reduced padding */
+            border-radius: 50px; /* Slightly smaller radius */
             text-decoration: none;
             font-weight: 700;
-            font-size: 2.5rem;
+            font-size: 1.8rem; /* Smaller text */
             transition: var(--transition);
             box-shadow: var(--neon-glow);
             position: relative;
             overflow: hidden;
             transform: translateZ(30px);
-            z-index: 10; /* Ensure button is clickable */
+            z-index: 10;
         }
 
         .connect-btn::before {
@@ -314,47 +313,47 @@
         }
 
         .connect-btn:hover {
-            transform: translateZ(50px) scale(1.2) rotateX(10deg);
-            box-shadow: 0 0 150px rgba(0, 212, 255, 1);
+            transform: translateZ(50px) scale(1.1) rotateX(10deg); /* Less scale */
+            box-shadow: 0 0 100px rgba(0, 212, 255, 1); /* Reduced shadow */
         }
 
         .social-links {
             display: flex;
             justify-content: center;
-            gap: 4rem;
-            margin-top: 4rem;
+            gap: 2rem; /* Reduced gap */
+            margin-top: 2rem;
             transform: translateZ(20px);
         }
 
         .social-btn {
-            width: 120px;
-            height: 120px;
+            width: 80px; /* Smaller size */
+            height: 80px;
             background: rgba(255, 255, 255, 0.1);
             color: var(--light-text);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 4rem;
+            font-size: 2.5rem; /* Smaller icon */
             transition: var(--transition);
-            border: 4px solid var(--primary-blue);
+            border: 3px solid var(--primary-blue);
             position: relative;
             transform-style: preserve-3d;
-            z-index: 10; /* Ensure social buttons are clickable */
+            z-index: 10;
         }
 
         .social-btn:hover {
             background: var(--accent-red);
-            transform: translateZ(40px) scale(1.4) rotateY(360deg);
+            transform: translateZ(40px) scale(1.2) rotateY(360deg); /* Less scale */
             box-shadow: var(--neon-glow);
             border-color: var(--light-text);
         }
 
         footer {
             background: rgba(10, 15, 28, 0.98);
-            padding: 4rem;
+            padding: 2rem; /* Reduced padding */
             text-align: center;
-            font-size: 1.5rem;
+            font-size: 1.2rem; /* Smaller text */
             color: var(--primary-blue);
             box-shadow: var(--neon-glow);
             z-index: 10;
@@ -362,24 +361,67 @@
             transform: translateZ(20px);
         }
 
-        /* Audio Visualizer */
         #visualizer {
             position: fixed;
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 150px;
+            height: 100px; /* Reduced height */
             z-index: -1;
             opacity: 0.7;
             transform: translateZ(-50px);
         }
 
+        /* Enhanced Mobile Responsiveness */
         @media (max-width: 768px) {
-            .logo-text { font-size: 6rem; }
-            nav ul { flex-direction: column; gap: 2.5rem; }
-            .music-grid { grid-template-columns: 1fr; }
-            h2 { font-size: 3rem; }
-            .social-btn { width: 80px; height: 80px; font-size: 2.5rem; }
+            .logo-text { font-size: 5rem; }
+            nav { padding: 1rem 0; }
+            nav ul { flex-direction: column; gap: 1.5rem; }
+            nav a { font-size: 1.2rem; }
+            .section { padding: 4rem 1rem; }
+            h2 { font-size: 2.5rem; }
+            .music-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+            .music-link { 
+                padding: 1.5rem; 
+                font-size: 1.2rem; 
+                border-width: 1px; 
+                background: transparent; /* Remove black block */
+            }
+            .music-link:hover { 
+                transform: translateZ(20px) scale(1.05); /* Less aggressive transform */
+                box-shadow: 0 0 40px rgba(255, 46, 99, 0.8);
+            }
+            #upcoming { 
+                padding: 2rem; 
+                max-width: 100%; 
+                margin: 2rem 1rem; 
+            }
+            #upcoming h3 { font-size: 1.5rem; }
+            #upcoming p { font-size: 1.2rem; }
+            #upcoming::after { font-size: 2rem; top: 10px; right: 10px; }
+            .connect-btn { 
+                padding: 1rem 2rem; 
+                font-size: 1.4rem; 
+                background: transparent; /* Remove black block */
+                border: 2px solid var(--primary-blue); /* Add border for clarity */
+            }
+            .connect-btn:hover { 
+                transform: translateZ(20px) scale(1.05); 
+                box-shadow: 0 0 40px rgba(0, 212, 255, 0.8);
+            }
+            .social-btn { width: 60px; height: 60px; font-size: 2rem; }
+            footer { padding: 1.5rem; font-size: 1rem; }
+        }
+
+        @media (max-width: 480px) {
+            .logo-text { font-size: 4rem; }
+            nav a { font-size: 1rem; }
+            h2 { font-size: 2rem; }
+            .music-link { font-size: 1rem; padding: 1rem; }
+            #upcoming h3 { font-size: 1.2rem; }
+            #upcoming p { font-size: 1rem; }
+            .connect-btn { font-size: 1.2rem; padding: 0.8rem 1.5rem; }
+            .social-btn { width: 50px; height: 50px; font-size: 1.5rem; }
         }
     </style>
 </head>
@@ -475,7 +517,7 @@
 
         const gui = new dat.GUI();
         gui.add({ rotateSpeed: 0.01 }, 'rotateSpeed', 0, 0.1).onChange(val => rotateSpeed = val);
-        gui.hide(); // Uncomment to show controls
+        gui.hide();
 
         let rotateSpeed = 0.01;
         let time = 0;
@@ -497,7 +539,7 @@
             visualizerCanvas.width = window.innerWidth;
         });
 
-        // Smooth Scroll with PreventDefault Fix
+        // Smooth Scroll
         document.querySelectorAll('nav a').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -508,7 +550,7 @@
             });
         });
 
-        // Audio Visualizer with Generative Effects
+        // Audio Visualizer
         const audio = new Audio('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3'); // Replace with Trey's track
         audio.loop = true;
         audio.volume = 0.4;
@@ -517,7 +559,7 @@
         const visualizerCanvas = document.getElementById('visualizer');
         const vCtx = visualizerCanvas.getContext('2d');
         visualizerCanvas.width = window.innerWidth;
-        visualizerCanvas.height = 150;
+        visualizerCanvas.height = 100;
 
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         const analyser = audioCtx.createAnalyser();
