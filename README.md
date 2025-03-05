@@ -442,7 +442,7 @@
 
     <div id="upcoming">
         <h3>NEW SINGLE "LINK IN BIO"</h3>
-        <p>March 2025 – Detonate the Multiverse</p>
+        <p>March 2025</p>
     </div>
 
     <section id="music" class="section">
