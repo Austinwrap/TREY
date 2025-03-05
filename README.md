@@ -319,7 +319,7 @@
     <canvas id="particles"></canvas>
     <header>
         <h1 class="logo-text">TREY</h1>
-        <p class="tagline">TREY</p>
+        <p class="tagline"></p>
     </header>
 
     <nav>
