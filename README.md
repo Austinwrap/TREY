@@ -4,14 +4,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TREY</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
     <style>
         :root {
             --primary-blue: #00d4ff;
             --accent-red: #ff2e63;
             --dark-bg: #0a0f1c;
             --light-text: #f0f0f0;
-            --neon-glow: 0 0 15px rgba(0, 212, 255, 0.8), 0 0 30px rgba(255, 46, 99, 0.6);
+            --neon-glow: 0 0 15px rgba(0, 212, 255, 0.9), 0 0 30px rgba(255, 46, 99, 0.7), 0 0 60px rgba(0, 212, 255, 0.5);
             --transition: all 0.4s ease;
         }
 
@@ -30,7 +31,16 @@
             position: relative;
         }
 
-        /* Cosmic Background */
+        #scene {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+        }
+
+        /* Cosmic Overlay */
         body::before {
             content: '';
             position: fixed;
@@ -38,78 +48,85 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle, rgba(0, 212, 255, 0.1), rgba(255, 46, 99, 0.1), transparent);
-            animation: cosmicPulse 10s infinite alternate;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.15), rgba(255, 46, 99, 0.15), transparent);
+            animation: cosmicShift 15s infinite alternate;
             z-index: -1;
+            pointer-events: none;
         }
 
-        @keyframes cosmicPulse {
-            0% { opacity: 0.3; transform: scale(1); }
-            100% { opacity: 0.6; transform: scale(1.05); }
+        @keyframes cosmicShift {
+            0% { transform: rotate(0deg) scale(1); opacity: 0.4; }
+            100% { transform: rotate(360deg) scale(1.1); opacity: 0.7; }
         }
 
         header {
             position: relative;
             text-align: center;
-            padding: 5rem 1rem;
-            background: linear-gradient(135deg, rgba(0, 212, 255, 0.3), rgba(255, 46, 99, 0.3));
-            animation: headerGlow 3s infinite alternate;
+            padding: 6rem 1rem;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.4), rgba(255, 46, 99, 0.4));
+            animation: headerPulse 2s infinite alternate;
+            z-index: 10;
         }
 
-        @keyframes headerGlow {
-            0% { box-shadow: inset 0 0 20px rgba(0, 212, 255, 0.5); }
-            100% { box-shadow: inset 0 0 40px rgba(255, 46, 99, 0.5); }
+        @keyframes headerPulse {
+            0% { transform: scale(1); box-shadow: inset 0 0 30px rgba(0, 212, 255, 0.6); }
+            100% { transform: scale(1.02); box-shadow: inset 0 0 60px rgba(255, 46, 99, 0.6); }
         }
 
         .logo-text {
             font-family: 'Orbitron', sans-serif;
-            font-size: 5rem;
+            font-size: 7rem;
             font-weight: 700;
-            letter-spacing: 4px;
+            letter-spacing: 6px;
             color: var(--light-text);
             text-transform: uppercase;
             text-shadow: var(--neon-glow);
-            transition: var(--transition);
+            animation: glitch 2s infinite;
+            position: relative;
         }
 
-        .logo-text:hover {
-            color: var(--primary-blue);
-            transform: scale(1.05);
+        @keyframes glitch {
+            0%, 100% { transform: translate(0); }
+            20% { transform: translate(-5px, 5px); }
+            40% { transform: translate(5px, -5px); }
+            60% { transform: translate(-5px, 0); }
+            80% { transform: translate(5px, 0); }
         }
 
         .tagline {
-            font-size: 1.5rem;
+            font-size: 2rem;
             font-weight: 300;
-            color: var(--accent-red);
+            color: var(--primary-blue);
             margin-top: 1rem;
-            animation: fadeInUp 1s ease forwards;
+            text-shadow: var(--neon-glow);
+            animation: fadeInUp 1.5s ease forwards;
         }
 
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         nav {
-            background: rgba(10, 15, 28, 0.95);
+            background: rgba(10, 15, 28, 0.98);
             position: sticky;
             top: 0;
             z-index: 1000;
-            backdrop-filter: blur(12px);
-            padding: 1.5rem 0;
+            backdrop-filter: blur(15px);
+            padding: 2rem 0;
             box-shadow: var(--neon-glow);
         }
 
         nav ul {
             display: flex;
             justify-content: center;
-            gap: 3rem;
+            gap: 4rem;
         }
 
         nav a {
             color: var(--light-text);
             text-decoration: none;
-            font-size: 1.3rem;
+            font-size: 1.5rem;
             font-weight: 700;
             text-transform: uppercase;
             position: relative;
@@ -119,10 +136,10 @@
         nav a::after {
             content: '';
             position: absolute;
-            bottom: -8px;
+            bottom: -10px;
             left: 0;
             width: 0;
-            height: 3px;
+            height: 4px;
             background: linear-gradient(90deg, var(--primary-blue), var(--accent-red));
             transition: width 0.4s ease;
         }
@@ -132,46 +149,55 @@
         }
 
         nav a:hover {
-            color: var(--primary-blue);
+            color: var(--accent-red);
             text-shadow: var(--neon-glow);
+            transform: scale(1.1);
         }
 
         .section {
-            padding: 6rem 2rem;
-            max-width: 1400px;
+            padding: 8rem 2rem;
+            max-width: 1600px;
             margin: 0 auto;
             text-align: center;
             position: relative;
+            z-index: 10;
         }
 
         h2 {
             font-family: 'Orbitron', sans-serif;
-            font-size: 3rem;
+            font-size: 4rem;
             font-weight: 700;
             color: var(--primary-blue);
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
             text-transform: uppercase;
             text-shadow: var(--neon-glow);
+            animation: glowPulse 2s infinite alternate;
+        }
+
+        @keyframes glowPulse {
+            0% { text-shadow: var(--neon-glow); }
+            100% { text-shadow: 0 0 20px rgba(255, 46, 99, 0.9), 0 0 40px rgba(0, 212, 255, 0.7); }
         }
 
         .music-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
         }
 
         .music-link {
             background: rgba(255, 255, 255, 0.05);
-            padding: 2rem;
-            border-radius: 12px;
+            padding: 2.5rem;
+            border-radius: 15px;
             color: var(--light-text);
             text-decoration: none;
-            font-weight: 500;
-            font-size: 1.3rem;
+            font-weight: 700;
+            font-size: 1.5rem;
             transition: var(--transition);
             position: relative;
             overflow: hidden;
-            border: 1px solid rgba(0, 212, 255, 0.3);
+            border: 2px solid var(--primary-blue);
+            box-shadow: var(--neon-glow);
         }
 
         .music-link::before {
@@ -181,7 +207,7 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(0, 212, 255, 0.2), transparent);
+            background: radial-gradient(circle, rgba(255, 46, 99, 0.3), transparent);
             opacity: 0;
             transition: opacity 0.4s ease;
         }
@@ -191,132 +217,157 @@
         }
 
         .music-link:hover {
-            background: var(--accent-red);
-            transform: translateY(-10px) scale(1.05);
-            box-shadow: var(--neon-glow);
+            background: var(--primary-blue);
+            transform: translateY(-15px) scale(1.1) rotate(2deg);
+            box-shadow: 0 0 80px rgba(0, 212, 255, 0.9);
             color: var(--dark-bg);
         }
 
         #upcoming {
             background: linear-gradient(45deg, var(--primary-blue), var(--accent-red));
-            padding: 3rem;
-            border-radius: 15px;
-            max-width: 800px;
-            margin: 3rem auto;
+            padding: 4rem;
+            border-radius: 20px;
+            max-width: 1000px;
+            margin: 4rem auto;
             box-shadow: var(--neon-glow);
-            animation: pulseNeon 1.5s infinite alternate;
+            animation: supernova 2s infinite alternate;
             position: relative;
             overflow: hidden;
+            z-index: 10;
         }
 
         #upcoming::after {
-            content: '🔥';
+            content: '🌌';
             position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 2rem;
-            animation: spin 2s infinite linear;
+            top: 20px;
+            right: 20px;
+            font-size: 3rem;
+            animation: orbit 3s infinite linear;
         }
 
-        @keyframes spin {
+        @keyframes orbit {
             100% { transform: rotate(360deg); }
         }
 
-        @keyframes pulseNeon {
-            0% { box-shadow: 0 0 15px var(--primary-blue); }
-            100% { box-shadow: 0 0 40px var(--accent-red); }
+        @keyframes supernova {
+            0% { box-shadow: 0 0 20px var(--primary-blue); transform: scale(1); }
+            100% { box-shadow: 0 0 100px var(--accent-red); transform: scale(1.05); }
         }
 
         #upcoming h3 {
             font-family: 'Orbitron', sans-serif;
-            font-size: 2rem;
+            font-size: 2.5rem;
             font-weight: 700;
             color: var(--light-text);
             text-shadow: var(--neon-glow);
         }
 
         #upcoming p {
-            font-size: 1.3rem;
+            font-size: 1.5rem;
             font-weight: 300;
             color: var(--dark-bg);
         }
 
         .connect-btn {
             display: inline-block;
-            margin: 2rem 0;
+            margin: 3rem 0;
             background: linear-gradient(90deg, var(--primary-blue), var(--accent-red));
             color: var(--light-text);
-            padding: 1.5rem 3rem;
-            border-radius: 50px;
+            padding: 2rem 4rem;
+            border-radius: 60px;
             text-decoration: none;
             font-weight: 700;
-            font-size: 1.5rem;
+            font-size: 2rem;
             transition: var(--transition);
             box-shadow: var(--neon-glow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .connect-btn::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.3), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .connect-btn:hover::before {
+            opacity: 1;
         }
 
         .connect-btn:hover {
-            transform: scale(1.1) rotate(2deg);
-            box-shadow: 0 0 50px rgba(255, 46, 99, 0.8);
+            transform: scale(1.15) rotate(5deg);
+            box-shadow: 0 0 100px rgba(255, 46, 99, 0.9);
         }
 
         .social-links {
             display: flex;
             justify-content: center;
-            gap: 2rem;
-            margin-top: 2rem;
+            gap: 3rem;
+            margin-top: 3rem;
         }
 
         .social-btn {
-            width: 70px;
-            height: 70px;
+            width: 100px;
+            height: 100px;
             background: rgba(255, 255, 255, 0.1);
             color: var(--light-text);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
+            font-size: 3rem;
             transition: var(--transition);
-            border: 2px solid var(--primary-blue);
+            border: 3px solid var(--accent-red);
+            position: relative;
         }
 
         .social-btn:hover {
             background: var(--primary-blue);
-            transform: scale(1.2) rotate(360deg);
+            transform: scale(1.3) rotate(720deg);
             box-shadow: var(--neon-glow);
+            border-color: var(--light-text);
         }
 
         footer {
-            background: rgba(10, 15, 28, 0.95);
-            padding: 2rem;
+            background: rgba(10, 15, 28, 0.98);
+            padding: 3rem;
             text-align: center;
-            font-size: 1rem;
+            font-size: 1.2rem;
             color: var(--primary-blue);
             box-shadow: var(--neon-glow);
+            z-index: 10;
+            position: relative;
         }
 
-        /* Particle Effect */
-        #particles {
+        /* Audio Visualizer */
+        #visualizer {
             position: fixed;
-            top: 0;
+            bottom: 0;
             left: 0;
             width: 100%;
-            height: 100%;
-            pointer-events: none;
+            height: 100px;
             z-index: -1;
+            opacity: 0.5;
         }
 
         @media (max-width: 768px) {
-            .logo-text { font-size: 3.5rem; }
-            nav ul { flex-direction: column; gap: 1.5rem; }
+            .logo-text { font-size: 4rem; }
+            nav ul { flex-direction: column; gap: 2rem; }
             .music-grid { grid-template-columns: 1fr; }
-            h2 { font-size: 2rem; }
+            h2 { font-size: 2.5rem; }
+            .social-btn { width: 70px; height: 70px; font-size: 2rem; }
         }
     </style>
 </head>
 <body>
-    <canvas id="particles"></canvas>
+    <div id="scene"></div>
+    <canvas id="visualizer"></canvas>
     <header>
         <h1 class="logo-text">TREY</h1>
         <p class="tagline"></p>
@@ -331,7 +382,7 @@
 
     <div id="upcoming">
         <h3>NEW SINGLE "LINK IN BIO"</h3>
-        <p>March 2025 – Ignite the Universe</p>
+        <p></p>
     </div>
 
     <section id="music" class="section">
@@ -357,10 +408,42 @@
     </section>
 
     <footer>
-        <p>© 2025 TREY | Trevor Coburn - Powered by the Cosmos</p>
+        <p>© 2025 TREY | Trevor Coburn - Conqueror of the Cosmos</p>
     </footer>
 
     <script>
+        // 3D Background with Three.js
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.getElementById('scene').appendChild(renderer.domElement);
+
+        const geometry = new THREE.TorusKnotGeometry(10, 3, 100, 16);
+        const material = new THREE.MeshPhongMaterial({ color: 0x00d4ff, emissive: 0xff2e63, shininess: 100 });
+        const torusKnot = new THREE.Mesh(geometry, material);
+        scene.add(torusKnot);
+
+        const light = new THREE.PointLight(0xffffff, 1, 100);
+        light.position.set(10, 10, 10);
+        scene.add(light);
+
+        camera.position.z = 30;
+
+        function animate3D() {
+            requestAnimationFrame(animate3D);
+            torusKnot.rotation.x += 0.01;
+            torusKnot.rotation.y += 0.01;
+            renderer.render(scene, camera);
+        }
+        animate3D();
+
+        window.addEventListener('resize', () => {
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+        });
+
         // Smooth Scroll
         document.querySelectorAll('nav a').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
@@ -369,63 +452,46 @@
             });
         });
 
-        // Particle Effect
-        const canvas = document.getElementById('particles');
-        const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        // Audio Visualizer
+        const audio = new Audio('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3'); // Replace with Trey's track if available
+        audio.loop = true;
+        audio.volume = 0.3;
+        audio.play();
 
-        const particlesArray = [];
-        const numberOfParticles = 100;
+        const visualizerCanvas = document.getElementById('visualizer');
+        const vCtx = visualizerCanvas.getContext('2d');
+        visualizerCanvas.width = window.innerWidth;
+        visualizerCanvas.height = 100;
 
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 5 + 1;
-                this.speedX = Math.random() * 1 - 0.5;
-                this.speedY = Math.random() * 1 - 0.5;
-                this.color = `hsl(${Math.random() * 360}, 100%, 50%)`;
-            }
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-                if (this.size > 0.2) this.size -= 0.01;
-            }
-            draw() {
-                ctx.fillStyle = this.color;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const analyser = audioCtx.createAnalyser();
+        const source = audioCtx.createMediaElementSource(audio);
+        source.connect(analyser);
+        analyser.connect(audioCtx.destination);
+        analyser.fftSize = 256;
+
+        const bufferLength = analyser.frequencyBinCount;
+        const dataArray = new Uint8Array(bufferLength);
+
+        function drawVisualizer() {
+            requestAnimationFrame(drawVisualizer);
+            analyser.getByteFrequencyData(dataArray);
+            vCtx.clearRect(0, 0, visualizerCanvas.width, visualizerCanvas.height);
+
+            const barWidth = (visualizerCanvas.width / bufferLength) * 2.5;
+            let x = 0;
+
+            for (let i = 0; i < bufferLength; i++) {
+                const barHeight = dataArray[i];
+                vCtx.fillStyle = `hsl(${i * 2}, 100%, 50%)`;
+                vCtx.fillRect(x, visualizerCanvas.height - barHeight / 2, barWidth, barHeight / 2);
+                x += barWidth + 1;
             }
         }
-
-        function init() {
-            for (let i = 0; i < numberOfParticles; i++) {
-                particlesArray.push(new Particle());
-            }
-        }
-
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            for (let i = 0; i < particlesArray.length; i++) {
-                particlesArray[i].update();
-                particlesArray[i].draw();
-                if (particlesArray[i].size <= 0.2) {
-                    particlesArray.splice(i, 1);
-                    i--;
-                    particlesArray.push(new Particle());
-                }
-            }
-            requestAnimationFrame(animate);
-        }
-
-        init();
-        animate();
+        drawVisualizer();
 
         window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+            visualizerCanvas.width = window.innerWidth;
         });
     </script>
 </body>
